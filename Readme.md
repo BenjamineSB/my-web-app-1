@@ -1,4 +1,5 @@
-Here you have need to change your Tomcat ManageApp username and password
+Here you have need to change your Tomcat ManageApp username and password in the pome.xml file.
+
 <plugin>
 	<groupId>org.codehaus.mojo</groupId>
 	<artifactId>tomcat-maven-plugin</artifactId>
