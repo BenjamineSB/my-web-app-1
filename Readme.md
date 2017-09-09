@@ -1,4 +1,4 @@
-# my-web-app-1
+Here you have need to change your Tomcat ManageApp username and password
 <plugin>
 	<groupId>org.codehaus.mojo</groupId>
 	<artifactId>tomcat-maven-plugin</artifactId>
@@ -7,8 +7,8 @@
 	<url>http://localhost:8080/manager/text</url>
 	<server>TomcatServer</server>
 	<path>/my-web-app-1</path>
-	<username>root</username>
-	<password>root</password>
+	<username>ChangePassword</username>
+	<password>ChangePassword</password>
 	</configuration>
 </plugin>
-Here you have need to change your Tomcat ManageApp username and password
+
