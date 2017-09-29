@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>apache.maven.com</groupId>
-  <artifactId>my-web-app-1</artifactId>
+  <artifactId>assignment-1</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>my-web-app-1 Maven Webapp</name>
+  <name>assignment-1 Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
@@ -25,7 +25,7 @@
   </dependencies>
   
   <build>
-    <finalName>my-web-app-1</finalName>
+    <finalName>assignment-1</finalName>
 	<plugins>
 	<plugin>
 	<groupId>org.codehaus.mojo</groupId>
@@ -34,7 +34,7 @@
 	<configuration>
 	<url>http://localhost:8080/manager/text</url>
 	<server>TomcatServer</server>
-	<path>/my-web-app-1</path>
+	<path>/sss/assignment-1</path>
 	<username>root</username>
 	<password>root</password>
 	</configuration>
