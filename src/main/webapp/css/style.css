@@ -11,27 +11,35 @@
   background: #FFFFFF;
   max-width: 360px;
   margin: 0 auto 100px;
-  padding: 45px;
+  padding: 20px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+
 .form input {
   font-family: "Roboto", sans-serif;
   outline: 0;
   background: #ccebff;
-  width: 100%;
+
   border: 0;
   margin: 0 0 15px;
   padding: 15px;
   box-sizing: border-box;
   font-size: 14px;
 }
+
 .form p{
   font-size: 30px;
   color: #003d66;
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   padding: 15px;
+}
+.form input[type=text]{
+  width: 100%;
+}
+.form input[type=password]{
+  width: 100%;
 }
 .form input[type=submit]{
   font-family: "Roboto", sans-serif;
@@ -80,6 +88,10 @@
 .form .register-form {
   display: none;
 }
+.form-checkbox input [type=checkbox]{
+  text-align: left;
+}
+
 .content-form {
   position: relative;
   z-index: 1;

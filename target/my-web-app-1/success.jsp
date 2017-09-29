@@ -21,6 +21,9 @@
         <table align="center">
             <tr>
                 <th>Cookie Name</th>
+                <th>Cookie Path</th>
+                <th>Cookie Domain</th>
+                <th>Cookie Comment</th>
                 <th>Cookie Value</th>
             </tr>
             <%
@@ -31,22 +34,48 @@
                 // Get an array of Cookies associated with the this domain
                 cookies = request.getCookies(); //collection the cookies
 
-                if( cookies != null ) {
+                String scheme=request.getScheme();//to check [http/https]
 
-                    for (int i = 0; i < cookies.length; i++) {
-                        cookie = cookies[i];
-                        out.print("<tr><td>" + cookie.getName( ) + "</td>");
-                        out.print("<td>" + cookie.getValue( )+" </td></tr>");
-                        //to check the created cookie is available
-                        if(cookie.getName( ).equals("user_cookie_http") || cookie.getName( ).equals("user_cookie_https")){
-                            cookie_found=true;
+                if("http".equals(scheme)){
+                    if( cookies != null ) {
+                        for (int i = 0; i < cookies.length; i++) {
+                            cookie = cookies[i];
+                            if (cookie.getName().equals("user_cookie_http")) {
+                                out.print("<tr><td>" + cookie.getName() + "</td>");
+                                out.print("<td>" + cookie.getPath() + "</td>");
+                                out.print("<td>" + cookie.getDomain() + "</td>");
+                                out.print("<td>" + cookie.getComment() + "</td>");
+                                out.print("<td>" + cookie.getValue() + " </td></tr>");
+                                cookie_found=true;
+                            }
                         }
+                        if(!cookie_found){
+                            response.sendRedirect("index.jsp");
+                        }
+                    } else {
+                        out.println("<p>No cookies founds</p>");
                     }
-                } else {
-                    out.println("<p>No cookies founds</p>");
                 }
-                if(!cookie_found)
-                    response.sendRedirect("index.jsp");
+                if("https".equals(scheme)){
+                    if( cookies != null ) {
+                        for (int i = 0; i < cookies.length; i++) {
+                            cookie = cookies[i];
+                            if (cookie.getName().equals("user_cookie_http") || cookie.getName().equals("user_cookie_https")) {
+                                out.print("<tr><td>" + cookie.getName() + "</td>");
+                                out.print("<td>" + cookie.getPath() + "</td>");
+                                out.print("<td>" + cookie.getDomain() + "</td>");
+                                out.print("<td>" + cookie.getComment() + "</td>");
+                                out.print("<td>" + cookie.getValue() + " </td></tr>");
+                                cookie_found=true;
+                            }
+                        }
+                        if(!cookie_found){
+                            response.sendRedirect("index.jsp");
+                        }
+                    } else {
+                        out.println("<p>No cookies founds</p>");
+                    }
+                }
             %>
         </table>
         <form method="post">
@@ -70,17 +99,29 @@
         if( cookie_destroy_array != null ) {
 
             for (int i = 0; i < cookie_destroy_array.length; i++) {
-                cookie_destroy = cookie_destroy_array[i];
-
-                if((cookie_destroy.getName( )).compareTo("user_cookie_http") == 0){
-                    cookie_destroy.setMaxAge(0);
-                    response.addCookie(cookie_destroy);
-                    //response.sendRedirect("index.jsp");
+                if("http".equals(scheme)) {
+                    cookie_destroy = cookie_destroy_array[i];
+                    //destroy user_cookie_http
+                    if((cookie_destroy.getName( )).compareTo("user_cookie_http") == 0){
+                        cookie_destroy.setMaxAge(0);
+                        response.addCookie(cookie_destroy);
+                        //response.sendRedirect("index.jsp");
+                    }
                 }
-                if((cookie_destroy.getName( )).compareTo("user_cookie_https") == 0) {
-                    cookie_destroy.setMaxAge(0);
-                    response.addCookie(cookie_destroy);
-                    //response.sendRedirect("index.jsp");
+                if("https".equals(scheme)) {
+                    cookie_destroy = cookie_destroy_array[i];
+                    //destroy user_cookie_http
+                    if((cookie_destroy.getName( )).compareTo("user_cookie_http") == 0){
+                        cookie_destroy.setMaxAge(0);
+                        response.addCookie(cookie_destroy);
+                        //response.sendRedirect("index.jsp");
+                    }
+                    //destroy user_cookie_https
+                    if((cookie_destroy.getName( )).compareTo("user_cookie_https") == 0) {
+                        cookie_destroy.setMaxAge(0);
+                        response.addCookie(cookie_destroy);
+                        //response.sendRedirect("index.jsp");
+                    }
                 }
                 response.setHeader("REFRESH", "0");    // 0 for refresh without delay
             }
